@@ -1,0 +1,277 @@
+<div class="cp-wrap">
+  <div class="cp-card">
+    <div class="cp-header">
+      <h2 class="cp-title">Regularització carrera professional</h2>
+      <p class="cp-subtitle">Introdueix els imports i el càlcul es farà automàticament.</p>
+    </div>
+
+    <div class="cp-stack">
+      <!-- INPUT PRINCIPAL 1 -->
+      <div class="cp-block cp-block--input">
+        <div class="cp-block-title">
+          <span class="cp-dot"></span>
+          Dada 1 (nòmina 2025)
+        </div>
+        <label class="cp-label" for="x">
+          Introdueix l'import de LA CASELLA <span class="cp-pill">Codi 076 - Carrera professional</span>
+          de la nòmina d'octubre o novembre de l'any 2025 (el mes que tu vulguis, però que no hagis estat de baixa):
+        </label>
+        <div class="cp-field">
+          <span class="cp-prefix">€</span>
+          <input type="number" id="x" step="0.01" oninput="calcular()" placeholder="Ex: 123.45" />
+        </div>
+      </div>
+
+      <!-- RESULTADOS -->
+      <div class="cp-block">
+        <div class="cp-block-title">
+          <span class="cp-dot cp-dot--soft"></span>
+          Resultats automàtics
+        </div>
+
+        <div class="cp-row">
+          <label class="cp-label" for="a">Import sumant el 2'5% de l'increment salarial de l'any 2025:</label>
+          <div class="cp-field cp-field--readonly">
+            <span class="cp-prefix">€</span>
+            <input type="text" id="a" readonly placeholder="—" />
+          </div>
+        </div>
+
+        <div class="cp-row">
+          <label class="cp-label" for="b">
+            Import sumant l'increment addicional del 20% pactat a l'acord de condicions per a l'any 2026 sobre la
+            carrera professional (exclòs el grau d'entrada):
+          </label>
+          <div class="cp-field cp-field--readonly">
+            <span class="cp-prefix">€</span>
+            <input type="text" id="b" readonly placeholder="—" />
+          </div>
+        </div>
+
+        <div class="cp-row cp-row--key">
+          <label class="cp-label" for="c">
+            Import sumant el 1'5% de l'increment salarial de l'any 2026.
+            <strong class="cp-strong">Això és el que hauries d'haver cobrat en la nòmina de gener del 2026:</strong>
+          </label>
+          <div class="cp-field cp-field--readonly cp-field--highlight">
+            <span class="cp-prefix">€</span>
+            <input type="text" id="c" readonly placeholder="—" />
+          </div>
+        </div>
+      </div>
+
+      <div class="cp-divider"></div>
+
+      <!-- INPUT PRINCIPAL 2 -->
+      <div class="cp-block cp-block--input">
+        <div class="cp-block-title">
+          <span class="cp-dot"></span>
+          Dada 2 (nòmina gener 2026)
+        </div>
+        <label class="cp-label" for="y">
+          Introdueix l'import de LA CASELLA <span class="cp-pill">Codi 076 - Carrera professional</span>
+          de la nòmina de gener de l'any 2026:
+        </label>
+        <div class="cp-field">
+          <span class="cp-prefix">€</span>
+          <input type="number" id="y" step="0.01" oninput="calcular()" placeholder="Ex: 130.20" />
+        </div>
+      </div>
+
+      <!-- DIFERENCIA -->
+      <div class="cp-block cp-block--total">
+        <div class="cp-block-title">
+          <span class="cp-dot cp-dot--warn"></span>
+          Diferència
+        </div>
+        <label class="cp-label" for="d">
+          Quantitat cobrada de menys que es regularitzarà a la propera nòmina de febrer 2026:
+        </label>
+        <div class="cp-field cp-field--readonly cp-field--total">
+          <span class="cp-prefix">€</span>
+          <input type="text" id="d" readonly placeholder="—" />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .cp-wrap{
+    --bg1:#0b1220;
+    --bg2:#111a2e;
+    --stroke:rgba(255,255,255,.12);
+    --text:rgba(255,255,255,.92);
+    --muted:rgba(255,255,255,.70);
+    --accent:#7c3aed;
+    --warn:#f59e0b;
+    --shadow:0 18px 40px rgba(0,0,0,.45);
+
+    font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial;
+    color: var(--text);
+    padding: 18px;
+  }
+
+  .cp-card{
+    max-width: 760px;              /* un poquito más compacto en 1 columna */
+    margin: 0 auto;
+    background: linear-gradient(180deg, var(--bg2), var(--bg1));
+    border: 1px solid var(--stroke);
+    border-radius: 18px;
+    box-shadow: var(--shadow);
+    overflow: hidden;
+  }
+
+  .cp-header{
+    padding: 22px;
+    border-bottom: 1px solid var(--stroke);
+  }
+
+  .cp-title{
+    margin: 0 0 6px;
+    font-size: 22px;
+    line-height: 1.15;
+  }
+
+  .cp-subtitle{
+    margin: 0;
+    font-size: 14px;
+    color: var(--muted);
+    line-height: 1.4;
+  }
+
+  /* UNA ÚNICA COLUMNA SIEMPRE */
+  .cp-stack{
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 14px;
+    padding: 16px;
+  }
+
+  .cp-block{
+    border: 1px solid var(--stroke);
+    border-radius: 16px;
+    background: rgba(255,255,255,.04);
+    padding: 14px;
+  }
+
+  .cp-block--input{ background: rgba(124,58,237,.08); }
+  .cp-block--total{ background: rgba(245,158,11,.08); }
+
+  .cp-block-title{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-weight:700;
+    font-size:13px;
+    margin-bottom:10px;
+  }
+
+  .cp-dot{
+    width:10px;
+    height:10px;
+    border-radius:50%;
+    background: var(--accent);
+    flex: 0 0 auto;
+  }
+  .cp-dot--soft{ background: rgba(255,255,255,.35); }
+  .cp-dot--warn{ background: var(--warn); }
+
+  .cp-label{
+    font-size: 13.5px;
+    color: var(--muted);
+    margin-bottom: 8px;
+    display:block;
+    line-height: 1.45;
+  }
+
+  .cp-pill{
+    padding: 2px 8px;
+    border-radius: 999px;
+    background: rgba(255,255,255,.08);
+    font-size: 12px;
+    white-space: nowrap;
+  }
+
+  .cp-row{ margin-top: 12px; }
+  .cp-row--key{ margin-top: 14px; }
+
+  .cp-strong{
+    display:inline-block;
+    margin-top: 6px;
+    color: var(--text);
+  }
+
+  .cp-field{
+    display:flex;
+    border:1px solid var(--stroke);
+    border-radius: 12px;
+    overflow:hidden;
+    min-height: 42px;
+  }
+
+  .cp-prefix{
+    padding: 10px 12px;
+    background: rgba(255,255,255,.05);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    min-width: 44px;
+  }
+
+  .cp-field input{
+    width: 100%;
+    padding: 10px 12px;
+    background: transparent;
+    border: 0;
+    outline: none;
+    color: var(--text);
+    font-size: 14px;
+  }
+
+  .cp-field--readonly input{
+    opacity: .95;
+  }
+
+  .cp-field--highlight{ box-shadow: 0 0 0 3px rgba(34,197,94,.20); }
+  .cp-field--total{ box-shadow: 0 0 0 3px rgba(245,158,11,.25); }
+
+  .cp-divider{
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,.14), transparent);
+    border-radius: 999px;
+  }
+
+  /* Responsive extra para móviles pequeños */
+  @media (max-width: 420px){
+    .cp-wrap{ padding: 12px; }
+    .cp-header{ padding: 18px; }
+    .cp-stack{ padding: 12px; gap: 12px; }
+    .cp-title{ font-size: 20px; }
+  }
+</style>
+
+<script>
+  function calcular() {
+    const x = parseFloat(document.getElementById("x").value);
+    const y = parseFloat(document.getElementById("y").value);
+
+    if (!isNaN(x)) {
+      const a = x * 1.025;
+      const b = a * 1.20;
+      const c = b * 1.015;
+
+      document.getElementById("a").value = a.toFixed(2);
+      document.getElementById("b").value = b.toFixed(2);
+      document.getElementById("c").value = c.toFixed(2);
+
+      if (!isNaN(y)) {
+        document.getElementById("d").value = (c - y).toFixed(2);
+      } else {
+        document.getElementById("d").value = "";
+      }
+    } else {
+      ["a","b","c","d"].forEach(id => (document.getElementById(id).value = ""));
+    }
+  }
+</script>>
